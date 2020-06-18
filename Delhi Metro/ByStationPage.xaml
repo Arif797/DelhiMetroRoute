@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DelhiMetro.ByStationPage">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Search by Stations" VerticalTextAlignment="Center" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+
+        <RelativeLayout>
+            <Image Source="background_image.png" Opacity="0.4" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" Aspect="AspectFill"/>
+
+            <Frame BackgroundColor="Transparent" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+
+                <StackLayout>
+                <StackLayout Padding="20" BackgroundColor="Transparent">
+                    <Entry Placeholder="From Station" BackgroundColor="White"/>
+                    <Entry Placeholder="To Station" BackgroundColor="White"/>
+                </StackLayout>
+                </StackLayout>
+            </Frame>
+        </RelativeLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

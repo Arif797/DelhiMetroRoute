@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DelhiMetro.MainPage"
+            NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+
+
+        <RelativeLayout>
+            <Image Source="background_image.png" Opacity="0.4" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}" Aspect="AspectFill"/>
+            <Frame Padding="10" BackgroundColor="Transparent" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+
+                <StackLayout Padding="50,0,50,50">
+
+                    <Image Source="metro_logo.png" HeightRequest="165" WidthRequest="250"/>
+ 
+                    <StackLayout Spacing="15" VerticalOptions="Center">
+                        <Button Text="Search by Stations" Clicked="Button_Clicked" TextColor="White" BackgroundColor="#016bb7"/>
+                        <Button Text="Metro Route" TextColor="White" BackgroundColor="#016bb7"/>
+                        <Button Text="Fare Calculation" TextColor="White" BackgroundColor="#016bb7"/>
+                        <Button Text="More" TextColor="White" BackgroundColor="#016bb7"/>
+                    </StackLayout>
+
+                </StackLayout>
+            </Frame>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>
