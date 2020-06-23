@@ -67,8 +67,8 @@ void getIntermediateStations(vector<vector<string> >& totalStationPaths, vector<
 
 void getRoutes(unordered_map<string, vector<string> >& stations, unordered_map<string, vector<string> >& lines, unordered_map<string, string>& color){
 
-	string currentStation = "E";
-	string destination = "I";
+	string currentStation = "Majlis Park";
+	string destination = "New Delhi";
 
 	string currentLine = color[currentStation];
 	string destinationLine = color[destination];
@@ -109,11 +109,57 @@ int main(){
 
 	// Adjacency list for stations
 	pair<string, string> station[] = {
-		make_pair("A", "B"), make_pair("B", "C"), make_pair("C", "D"), 
-		make_pair("D", "E"), make_pair("C", "O"), make_pair("O", "P"), 
-		make_pair("C", "F"), make_pair("F", "G"), make_pair("G", "H"), 
-		make_pair("G", "J"), make_pair("J", "K"), make_pair("J", "L"), 
-		make_pair("L", "N"), make_pair("L", "M"), make_pair("H", "I")
+
+		// Yellow Lines
+
+		make_pair("Samaypur Badli", "Kashmere Gate"), make_pair("Kashmere Gate", "New Delhi"), make_pair("New Delhi", "Rajiv Chowk"), 
+		make_pair("Rajiv Chowk", "Central Secretariat"), make_pair("Central Secretariat", "INA"), make_pair("INA", "Hauz Khas"), 
+		make_pair("Hauz Khas", "Huda City Centre"), 
+
+
+		// Blue Line
+
+		make_pair("Dwarka Sec 8", "Dwarka"), make_pair("Dwarka", "Janakpuri West"), 
+		make_pair("Janakpuri West", "Rajouri Garden"), make_pair("Rajouri Garden", "Kirti Nagar"), 
+		make_pair("Kirti Nagar", "Rajiv Chowk"), make_pair("Rajiv Chowk", "Mandi House"),
+		make_pair("Mandi House", "Yamuna Bank"), make_pair("Yamuna Bank", "Mayur Vihar-1"), make_pair("Mayur Vihar-1", "Botanical Garden"),
+		make_pair("Botanical Garden", "Sec 52 Noida"), make_pair("Sec 52 Noida", "Noida Electronic City"),
+
+		// Blue Line - Vaishali Route
+
+		make_pair("Yamuna Bank", "Karkaduma"),
+		make_pair("Karkaduma", "Anand Vihar I.S.B.T."), make_pair("Anand Vihar I.S.B.T.", "Vaishali"),
+
+		// Violet Line
+
+		make_pair("Kashmere Gate", "Mandi House"), make_pair("Mandi House", "Central Secretariat"),
+
+		// Magenta Line
+
+		make_pair("Botanical Garden", "Kalkaji Mandir"),
+		make_pair("Kalkaji Mandir", "Lajpat Nagar"), make_pair("Kalkaji Mandir", "Ballabgarh"), make_pair("Kalkaji Mandir", "Hauz Khas"),
+		make_pair("Hauz Khas", "Janakpuri West"),
+
+
+		// Airport Express Line
+
+		make_pair("New Delhi", "Dwarka Sec 21"), 
+
+		
+		// Pink Line
+
+		make_pair("Majlis Park", "Azadpur"), make_pair("Azadpur", "Samaypur Badli"), make_pair("Azadpur", "Kashmere Gate"),
+		make_pair("Azadpur", "Netaji Subhash Place"), make_pair("Netaji Subhash Place", "Rithala"), make_pair("Netaji Subhash Place", "Inderlok"),
+		make_pair("Netaji Subhash Place", "Rajouri Garden"), make_pair("INA", "Lajpat Nagar"), make_pair("Lajpat Nagar", "Hazrat Nizamuddin"), make_pair("Welcome", "Shiv Vihar"),
+		make_pair("Rajouri Garden", "INA"), make_pair("Karkaduma", "Welcome"), make_pair("Anand Vihar I.S.B.T.", "Mayur Vihar-1"), make_pair("Mayur Vihar-1", "Hazrat Nizamuddin"), 
+		
+		// Red Line
+
+		make_pair("Inderlok", "Kashmere Gate"), make_pair("Kashmere Gate", "Welcome"), make_pair("Welcome", "New Bua Adda"),
+
+		// Green Line
+
+		make_pair("Inderlok", "Ashok Park Main"), make_pair("Ashok Main Park", "City Park"), make_pair("Kirti Nagar", "Ashok Main Park")
 	};
 	unordered_map<string, vector<string> > stations;
 	for (auto edge : station){
@@ -123,9 +169,21 @@ int main(){
 
 	// Adjacency list for line colors
 	pair<string, string> interchange[] = {
-		make_pair("RED", "YELLOW"), 
-		make_pair("YELLOW", "BLUE"), 
-		make_pair("BLUE", "GREEN")
+		make_pair("YELLOW", "PINK"),
+		make_pair("YELLOW", "BLUE"),
+		make_pair("YELLOW", "RED"),
+		make_pair("YELLOW", "VIOLET"),
+		make_pair("YELLOW", "MAGENTA"),
+		make_pair("YELLOW", "ORANGE"),
+		make_pair("BLUE", "PINK"),
+		make_pair("BLUE", "VIOLET"),
+		make_pair("BLUE", "MAGENTA"),
+		make_pair("BLUE", "ORANGE"),
+		make_pair("PINK", "VIOLET"),
+		make_pair("PINK", "RED"),
+		make_pair("MAGENTA", "VIOLET"),
+		make_pair("GREEN", "PINK"),
+		make_pair("GREEN", "RED")
 	};
 	unordered_map<string, vector<string> > lines;
 	for (auto color : interchange){
@@ -135,22 +193,46 @@ int main(){
 
 	// store line color for all stations
 	unordered_map<string, string> color;
-	color["A"] = "RED";
-	color["B"] = "RED";
-	color["C"] = "RED";
-	color["D"] = "RED";
-	color["E"] = "RED";
-	color["F"] = "YELLOW";
-	color["G"] = "YELLOW";
-	color["H"] = "BLUE";
-	color["I"] = "BLUE";
-	color["J"] = "BLUE";
-	color["K"] = "BLUE";
-	color["L"] = "GREEN";
-	color["M"] = "GREEN";
-	color["N"] = "GREEN";
-	color["O"] = "YELLOW";
-	color["P"] = "YELLOW";
+	color["Rithala"] = "RED";
+	color["Welcome"] = "RED";
+	color["New Bua Adda"] = "RED";
+	color["Inderlok"] = "GREEN";
+	color["City Park"] = "GREEN";
+	color["Kirti Nagar"] = "GREEN";
+	color["Ashok Park Main"] = "GREEN";
+	color["New Delhi"] = "ORANGE";
+	color["Dwarka Sec 21"] = "ORANGE";
+	color["Dwarka Sec 8"] = "BLUE";
+	color["Dwarka"] = "BLUE";
+	color["Mandi House"] = "BLUE";
+	color["Yamuna Bank"] = "BLUE";
+	color["Mayur Vihar-1"] = "BLUE";
+	color["Sec 52 Noida"] = "BLUE";
+	color["Noida Electronic City"] = "BLUE";
+	color["Lakshmi Nagar"] = "BLUE";
+	color["Kaushambi"] = "BLUE";
+	color["Vaishali"] = "BLUE";
+	color["Majlis Park"] = "PINK";
+	color["Azadpur"] = "PINK";
+	color["Netaji Subhash Place"] = "PINK";
+	color["Rajouri Garden"] = "PINK";
+	color["Lajpat Nagar"] = "PINK";
+	color["Hazrat Nizamuddin"] = "PINK";
+	color["Anand Vihar I.S.B.T."] = "PINK";
+	color["Karkaduma"] = "PINK";
+	color["Shiv Vihar"] = "PINK";
+	color["Kashmere Gate"] = "VIOLET";
+	color["Central Secretariat"] = "VIOLET";
+	color["Kalkaji Mandir"] = "VIOLET";
+	color["Ballabgarh"] = "VIOLET";
+	color["Samaypur Badli"] = "YELLOW";
+	color["Rajiv Chowk"] = "YELLOW";
+	color["INA"] = "YELLOW";
+	color["Hauz Khas"] = "YELLOW";
+	color["Huda City Centre"] = "YELLOW";
+	color["Janakpuri West"] = "MAGENTA";
+	color["Shankar Vihar"] = "MAGENTA";
+	color["Botanical Garden"] = "MAGENTA";
 
 
 	getRoutes(stations, lines, color);
