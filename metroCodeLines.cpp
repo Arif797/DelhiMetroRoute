@@ -31,7 +31,7 @@ void getIntermediateLines(vector<vector<string> >& totalColorPaths, vector<strin
 	visitedLines[currentLine] = false;
 }
 
-void getIntermediateStations(vector<vector<string> >& totalStationPaths, vector<string> stationPath, string currentStation, string& destination, unordered_map<string, vector<string> >& stations, unordered_map<string, bool>& visitedStation, unordered_map<string, string>& color, queue<string>& q, string& prevColor){
+void getIntermediateStations(vector<vector<string> >& totalStationPaths, vector<string> stationPath, string currentStation, string& destination, unordered_map<string, vector<string> >& stations, unordered_map<string, bool>& visitedStation, unordered_multimap<string, string>& color, queue<string>& q, string& prevColor){
 
 	stationPath.push_back(currentStation);
 	if (isEqual(currentStation, destination)){
@@ -72,7 +72,7 @@ void getIntermediateStations(vector<vector<string> >& totalStationPaths, vector<
 	visitedStation[currentStation] = false;
 }
 
-void getRoutes(unordered_map<string, vector<string> >& stations, unordered_map<string, vector<string> >& lines, unordered_map<string, string>& color){
+void getRoutes(unordered_map<string, vector<string> >& stations, unordered_map<string, vector<string> >& lines, unordered_multimap<string, string>& color){
 
 	string currentStation = "Dwarka";
 	string destination = "New Delhi";
@@ -187,8 +187,19 @@ int main(){
 
 		// Violet Line
 
-		make_pair("Kashmere Gate", "Mandi House"), make_pair("Mandi House", "Central Secretariat"), make_pair("Central Secretariat", "Lajpat Nagar"),
-		make_pair("Lajpat Nagar", "Kalkaji Mandir"), make_pair("Kalkaji Mandir", "Ballabgarh"),
+		make_pair("Kashmere Gate", "Lal Quila"),
+		make_pair("Lal Quila", "Jama Masjid"),
+		make_pair("Jama Masjid", "Delhi Gate"),
+		make_pair("Delhi Gate", "I.T.O."),
+		make_pair("I.T.O.", "Mandi House"),
+		make_pair("Mandi House", "Janpath"),
+		make_pair("Janpath", "Central Secretariat"),
+		make_pair("Central Secretariat", "Khan Market"),
+		make_pair("Khan Market", "JLN Stadium"),
+		make_pair("JLN Stadium", "Jangpura"),
+		make_pair("Jangpura", "Lajpat Nagar"),
+		make_pair("Lajpat Nagar", "Kalkaji Mandir"),
+		make_pair("Kalkaji Mandir", "Ballabgarh"),
 
 		// Magenta Line
 
@@ -249,108 +260,108 @@ int main(){
 	}
 
 	// store line color for all stations
-	unordered_map<string, string> color;
-	color["Rithala"] = "RED";
-	color["Welcome"] = "RED";
-	color["New Bus Adda"] = "RED";
+	unordered_multimap<string, string> color;
+	color.insert(make_pair("Rithala", "RED"));
+	color.insert(make_pair("Welcome", "RED"));
+	color.insert(make_pair("New Bus Adda", "RED"));
 
 
-	color["Inderlok"] = "GREEN";
-	color["City Park"] = "GREEN";
-	color["Kirti Nagar"] = "GREEN";
-	color["Ashok Park Main"] = "GREEN";
-
-	
-	color["New Delhi"] = "ORANGE";
-	color["Shivaji Stadium"] = "ORANGE";
-	color["Dhaula Kuan"] = "ORANGE";
-	color["Delhi Aerocity"] = "ORANGE";
-	color["Airport"] = "ORANGE";
-	color["Dwarka Sec 21"] = "ORANGE";
+	color.insert(make_pair("Inderlok", "GREEN"));
+	color.insert(make_pair("City Park", "GREEN"));
+	color.insert(make_pair("Kirti Nagar", "GREEN"));
+	color.insert(make_pair("Ashok Park Main", "GREEN"));
 
 	
-	color["Dwarka Sec 21"] = "BLUE";
-	color["Dwarka Sec 8"] = "BLUE";
-	color["Dwarka Sec 9"] = "BLUE";
-	color["Dwarka Sec 10"] = "BLUE";
-	color["Dwarka Sec 11"] = "BLUE";
-	color["Dwarka Sec 12"] = "BLUE";
-	color["Dwarka Sec 13"] = "BLUE";
-	color["Dwarka Sec 14"] = "BLUE";
-	color["Dwarka"] = "BLUE";
-	color["Dwarka Mor"] = "BLUE";
-	color["Nawada"] = "BLUE";
-	color["Uttam Nagar (W)"] = "BLUE";
-	color["Uttam Nagar (E)"] = "BLUE";
-	color["Janakpuri East"] = "BLUE";
-	color["Tilak Nagar"] = "BLUE";
-	color["Subhash Nagar"] = "BLUE";
-	color["Tagore Garden"] = "BLUE";
-	color["Ramesh Nagar"] = "BLUE";
-	color["Moti Nagar"] = "BLUE";
-	color["Shadipur"] = "BLUE";
-	color["Patel Nagar"] = "BLUE";
-	color["Rajendra Place"] = "BLUE";
-	color["Karol Bagh"] = "BLUE";
-	color["Jhandewalan"] = "BLUE";
-	color["RK Ashram Marg"] = "BLUE";
-	color["Barakhamba Road"] = "BLUE";
-	color["Mandi House"] = "BLUE";
-	color["Supreme Court"] = "BLUE";
-	color["Indraprastha"] = "BLUE";
-	color["Yamuna Bank"] = "BLUE";
-	color["Akshardham"] = "BLUE";
-	color["Mayur Vihar-1"] = "BLUE";
-	color["Mayur Vihar Ext"] = "BLUE";
-	color["New Ashok Nagar"] = "BLUE";
-	color["Noida Sec 15"] = "BLUE";
-	color["Noida Sec 16"] = "BLUE";
-	color["Noida Sec 18"] = "BLUE";
-	color["Golf Course"] = "BLUE";
-	color["Noida City Centre"] = "BLUE";
-	color["Sec Noida 34"] = "BLUE";
-	color["Sec Noida 52"] = "BLUE";
-	color["Sec Noida 61"] = "BLUE";
-	color["Sec Noida 59"] = "BLUE";
-	color["Sec Noida 62"] = "BLUE";
-	color["Noida Electronic City"] = "BLUE";
-
-	color["Laxmi Nagar Nagar"] = "BLUE";
-	color["Nirman Vihar"] = "BLUE";
-	color["Preet Vihar"] = "BLUE";
-	color["Kaushambi"] = "BLUE";
-	color["Vaishali"] = "BLUE";
+	color.insert(make_pair("New Delhi", "ORANGE"));
+	color.insert(make_pair("Shivaji Stadium", "ORANGE"));
+	color.insert(make_pair("Dhaula Kuan", "ORANGE"));
+	color.insert(make_pair("Delhi Aerocity", "ORANGE"));
+	color.insert(make_pair("Airport", "ORANGE"));
+	color.insert(make_pair("Dwarka Sec 21", "ORANGE"));
 
 	
-	color["Majlis Park"] = "PINK";
-	color["Azadpur"] = "PINK";
-	color["Netaji Subhash Place"] = "PINK";
-	color["Rajouri Garden"] = "PINK";
-	color["Lajpat Nagar"] = "PINK";
-	color["Hazrat Nizamuddin"] = "PINK";
-	color["Anand Vihar I.S.B.T."] = "PINK";
-	color["Karkaduma"] = "PINK";
-	color["Shiv Vihar"] = "PINK";
+	color.insert(make_pair("Dwarka Sec 21", "BLUE"));
+	color.insert(make_pair("Dwarka Sec 8", "BLUE"));
+	color.insert(make_pair("Dwarka Sec 9", "BLUE"));
+	color.insert(make_pair("Dwarka Sec 10", "BLUE"));
+	color.insert(make_pair("Dwarka Sec 11", "BLUE"));
+	color.insert(make_pair("Dwarka Sec 12", "BLUE"));
+	color.insert(make_pair("Dwarka Sec 13", "BLUE"));
+	color.insert(make_pair("Dwarka Sec 14", "BLUE"));
+	color.insert(make_pair("Dwarka", "BLUE"));
+	color.insert(make_pair("Dwarka Mor", "BLUE"));
+	color.insert(make_pair("Nawada", "BLUE"));
+	color.insert(make_pair("Uttam Nagar (W)", "BLUE"));
+	color.insert(make_pair("Uttam Nagar (E)", "BLUE"));
+	color.insert(make_pair("Janakpuri East", "BLUE"));
+	color.insert(make_pair("Tilak Nagar", "BLUE"));
+	color.insert(make_pair("Subhash Nagar", "BLUE"));
+	color.insert(make_pair("Tagore Garden", "BLUE"));
+	color.insert(make_pair("Ramesh Nagar", "BLUE"));
+	color.insert(make_pair("Moti Nagar", "BLUE"));
+	color.insert(make_pair("Shadipur", "BLUE"));
+	color.insert(make_pair("Patel Nagar", "BLUE"));
+	color.insert(make_pair("Rajendra Place", "BLUE"));
+	color.insert(make_pair("Karol Bagh", "BLUE"));
+	color.insert(make_pair("Jhandewalan", "BLUE"));
+	color.insert(make_pair("RK Ashram Marg", "BLUE"));
+	color.insert(make_pair("Barakhamba Road", "BLUE"));
+	color.insert(make_pair("Mandi House", "BLUE"));
+	color.insert(make_pair("Supreme Court", "BLUE"));
+	color.insert(make_pair("Indraprastha", "BLUE"));
+	color.insert(make_pair("Yamuna Bank", "BLUE"));
+	color.insert(make_pair("Akshardham", "BLUE"));
+	color.insert(make_pair("Mayur Vihar-1", "BLUE"));
+	color.insert(make_pair("Mayur Vihar Ext", "BLUE"));
+	color.insert(make_pair("New Ashok Nagar", "BLUE"));
+	color.insert(make_pair("Noida Sec 15", "BLUE"));
+	color.insert(make_pair("Noida Sec 16", "BLUE"));
+	color.insert(make_pair("Noida Sec 18", "BLUE"));
+	color.insert(make_pair("Golf Course", "BLUE"));
+	color.insert(make_pair("Noida City Centre", "BLUE"));
+	color.insert(make_pair("Sec 34 Noida", "BLUE"));
+	color.insert(make_pair("Sec 52 Noida", "BLUE"));
+	color.insert(make_pair("Sec 61 Noida", "BLUE"));
+	color.insert(make_pair("Sec 59 Noida", "BLUE"));
+	color.insert(make_pair("Sec 62 Noida", "BLUE"));
+	color.insert(make_pair("Noida Electronic City", "BLUE"));
+
+	color.insert(make_pair("Laxmi Nagar Nagar", "BLUE"));
+	color.insert(make_pair("Nirman Vihar", "BLUE"));
+	color.insert(make_pair("Preet Vihar", "BLUE"));
+	color.insert(make_pair("Kaushambi", "BLUE"));
+	color.insert(make_pair("Vaishali", "BLUE"));
+
+	
+	color.insert(make_pair("Majlis Park", "PINK"));
+	color.insert(make_pair("Azadpur", "PINK"));
+	color.insert(make_pair("Netaji Subhash Place", "PINK"));
+	color.insert(make_pair("Rajouri Garden", "PINK"));
+	color.insert(make_pair("Lajpat Nagar", "PINK"));
+	color.insert(make_pair("Hazrat Nizamuddin", "PINK"));
+	color.insert(make_pair("Anand Vihar I.S.B.T.", "PINK"));
+	color.insert(make_pair("Karkaduma", "PINK"));
+	color.insert(make_pair("Shiv Vihar", "PINK"));
 	
 
-	color["Kashmere Gate"] = "VIOLET";
-	color["Central Secretariat"] = "VIOLET";
-	color["Kalkaji Mandir"] = "VIOLET";
-	color["Ballabgarh"] = "VIOLET";
+	color.insert(make_pair("Kashmere Gate", "VIOLET"));
+	color.insert(make_pair("Central Secretariat", "VIOLET"));
+	color.insert(make_pair("Kalkaji Mandir", "VIOLET"));
+	color.insert(make_pair("Ballabgarh", "VIOLET"));
 
 	
-	color["Samaypur Badli"] = "YELLOW";
-	color["Civil Lines"] = "YELLOW";
-	color["Chandni Chowk"] = "YELLOW";
-	color["Rajiv Chowk"] = "YELLOW";
-	color["INA"] = "YELLOW";
-	color["Hauz Khas"] = "YELLOW";
-	color["Huda City Centre"] = "YELLOW";
-	
+	color.insert(make_pair("Samaypur Badli", "YELLOW"));
+	color.insert(make_pair("Civil Lines", "YELLOW"));
+	color.insert(make_pair("Chandni Chowk", "YELLOW"));
+	color.insert(make_pair("Rajiv Chowk", "YELLOW"));
+	color.insert(make_pair("INA", "YELLOW"));
+	color.insert(make_pair("Hauz Khas", "YELLOW"));
+	color.insert(make_pair("Huda City Centre", "YELLOW"));
 
-	color["Janakpuri West"] = "MAGENTA";
-	color["Shankar Vihar"] = "MAGENTA";
-	color["Botanical Garden"] = "MAGENTA";
+
+	color.insert(make_pair("Janakpuri West", "MAGENTA"));
+	color.insert(make_pair("Shankar Vihar", "MAGENTA"));
+	color.insert(make_pair("Botanical Garden", "MAGENTA"));
 
 
 	getRoutes(stations, lines, color);
