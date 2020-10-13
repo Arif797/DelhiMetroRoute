@@ -4,4 +4,5 @@ class UserDetail {
   String name;
   String email;
   String phone;
+  String responseId;
 }
